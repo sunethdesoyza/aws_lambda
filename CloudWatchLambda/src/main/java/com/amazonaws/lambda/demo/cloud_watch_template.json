@@ -1,0 +1,358 @@
+{
+    "widgets": [
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 3,
+            "width": 24,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "metrics": [
+                    [ "AWS/EC2", "CPUUtilization", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "",
+                "stacked": true
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 8,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "NetworkIn", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300
+            }
+        },
+        {
+            "type": "metric",
+            "x": 12,
+            "y": 8,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "NetworkOut", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 16,
+            "width": 6,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "DiskWriteBytes", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "Disk Writes (Bytes)"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 6,
+            "y": 16,
+            "width": 6,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "DiskReadBytes", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "Disk Reads (Bytes)"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 24,
+            "width": 24,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "metrics": [
+                    [ "AWS/DynamoDB", "ProvisionedReadCapacityUnits", "TableName", "BOOTSTRAP_CLIENT_USER_PREFERENCES" ],
+                    [ "...", "BOOTSTRAP_DEVICE_ALERT_DATA" ],
+                    [ "...", "BOOTSTRAP_LOCATION_DATA" ],
+                    [ "...", "BOOTSTRAP_NOTIFICATION_DATA" ],
+                    [ "...", "BOOTSTRAP_REPORTING_SENSOR_DATA" ],
+                    [ "...", "DEVICE_DESIRED_STATE" ],
+                    [ "...", "HIGHEST_PRIORITY_ALERT_DATA" ],
+                    [ "...", "IOTP_DEVICE_ALERT_CONSUMER-SHADOW_UPDATE_STREAM" ],
+                    [ "...", "IOTP_REPORTING_CONSUMER-SHADOW_UPDATE_STREAM" ]
+                ],
+                "region": "eu-west-1",
+                "title": "Dynamo DB - ProvisionedReadCapacityUnits",
+                "stacked": true
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 32,
+            "width": 24,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "metrics": [
+                    [ "System/Linux", "DiskSpaceAvailable", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "stacked": false
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 35,
+            "width": 24,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "metrics": [
+                    [ "System/Linux", "DiskSpaceUtilization", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "stacked": false
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 38,
+            "width": 24,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "metrics": [
+                    [ "System/Linux", "DiskSpaceUsed", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "stacked": false
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 43,
+            "width": 21,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "stacked": false,
+                "metrics": [
+                    [ "System/Linux", "MemoryUtilization", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "title": "Memory Utilization",
+                "period": 300
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 46,
+            "width": 21,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "stacked": false,
+                "metrics": [
+                    [ "System/Linux", "MemoryAvailable", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "Memory Available"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 49,
+            "width": 21,
+            "height": 3,
+            "properties": {
+                "view": "singleValue",
+                "stacked": false,
+                "metrics": [
+                    [ "System/Linux", "MemoryUsed", "InstanceId", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "title": "Memory Used",
+                "period": 300
+            }
+        },
+		        {
+            "type": "metric",
+            "x": 0,
+            "y": 60,
+            "width": 21,
+            "height": 9,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElasticBeanstalk", "InstanceHealth", "InstanceId", "%s", "EnvironmentName", "EnvName", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "title": "Elastic Beanstalk - Instances Health",
+                "period": 300
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 54,
+            "width": 18,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElasticBeanstalk", "EnvironmentHealth", "EnvironmentName", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "Elastic Beanstalk - EnvironmentHealth"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 69,
+            "width": 18,
+            "height": 6,
+            "properties": {
+                "view": "singleValue",
+                "stacked": true,
+                "metrics": [
+                    [ "AWS/ElasticBeanstalk", "InstancesOk", "EnvironmentName", "%s", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "title": "Elastic Beanstalk - InstancesOk",
+                "period": 300        
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 75,
+            "width": 18,
+            "height": 9,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElasticBeanstalk", "CPUSystem", "InstanceId", "%s", "EnvironmentName", "EnvName", { "label": "%s" } ]
+                ],
+                "region": "eu-west-1",
+                "period": 300
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 41,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n---\n## **EC2 Memory Related Metrics**\n\n\n                 \n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 6,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n&nbsp;\n## **Network IO Metrics**\n\n\n                 \n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 30,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n---\n## **EC2 Disk Space Related Metrics**\n\n\n                 \n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 22,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n---\n## **Dynamo DB Related Metrics**\n\n\n                 \n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 14,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n---\n## **Disk IO Related Metrics**\n\n\n                 \n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 2,
+            "width": 24,
+            "height": 1,
+            "properties": {
+                "markdown": "\n## **CPU Utilization**               \n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 0,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n---\n# **Master Monitoring Dashboard**\n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 52,
+            "width": 21,
+            "height": 2,
+            "properties": {
+                "markdown": "\n---\n## **Elastic Beanstalk Metrics**\n"
+            }
+        }
+
+    ]
+}
