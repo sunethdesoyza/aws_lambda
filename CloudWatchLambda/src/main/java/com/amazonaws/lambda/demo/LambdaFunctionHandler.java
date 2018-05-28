@@ -38,17 +38,16 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 
 	private static String TEMPLATE = "cloud_watch_template.json";
 	private static String RESOURCES_FILE = "dashboard.properties";
-	private static Properties properties = new Properties();
+	private Properties properties = new Properties();
 	private static AmazonEC2 ec2 = AmazonEC2ClientBuilder.defaultClient();
 	private static AmazonCloudWatch acw = AmazonCloudWatchClientBuilder.defaultClient();
+	private ClassLoader classLoader = null;
 	
-	static{
-		loadProperties();
-	}
 
 	@Override
 	public String handleRequest(Object input, Context context) {
-		
+		classLoader = getClass().getClassLoader();
+		loadProperties();
 		PutDashboardRequest putDashboardRequest = new PutDashboardRequest();
 		putDashboardRequest.setDashboardName(properties.getProperty("aws.cloudwatch.dashboard.name"));
 		JsonNode reloadedDashbord = getUpdatedDashBoard();
@@ -122,7 +121,7 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 		// add the new widgets to the dashboard
 		for (JsonNode widget : widgets) {
 			ObjectNode properties = (ObjectNode) widget.get("properties");
-			properties.remove("metrics");
+			
 			if (properties != null) {
 				ArrayNode metrics = (ArrayNode) properties.get("metrics");
 				if (metrics != null) {
@@ -130,6 +129,7 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 					if (metricLine != null && metricLine.size() > 2) {
 						TextNode heading = (TextNode) metricLine.get(1);
 						if (heading != null) {
+							properties.remove("metrics");
 							properties.set("metrics", updatedMetricList.get(heading.asText()));
 						}
 					}
@@ -142,8 +142,7 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 	private JsonNode loadTemplate() {
 		JsonNode rootNode = null;
 		try {
-			//ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-			InputStream stream = LambdaFunctionHandler.class.getResourceAsStream(TEMPLATE);
+			InputStream stream = classLoader.getResourceAsStream(TEMPLATE);
 			rootNode = new ObjectMapper().readTree(stream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -153,9 +152,9 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 		return rootNode;
 	}
 	
-	private static void loadProperties() {
+	private void loadProperties() {
 		try {
-			InputStream stream = LambdaFunctionHandler.class.getResourceAsStream(RESOURCES_FILE);
+			InputStream stream = classLoader.getResourceAsStream(RESOURCES_FILE);
 			properties.load(stream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

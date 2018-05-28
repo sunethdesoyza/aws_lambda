@@ -62,9 +62,10 @@ public class MetricsUtil {
 		ArrayNode returnMetric = mapper.createArrayNode();
 		Map<String, List<String>> instancesMap = instances.getInstances();
 		for (String label : instancesMap.keySet()) {
+			String labelCode = label.split("-")[1];
 			List<String> instanceList = instancesMap.get(label);
 			for (String id : instanceList) {
-				JsonNode metric = mapper.readTree(String.format(template, id, label));
+				JsonNode metric = mapper.readTree(String.format(template, id, labelCode));
 				returnMetric.add(metric);
 			}
 		}
