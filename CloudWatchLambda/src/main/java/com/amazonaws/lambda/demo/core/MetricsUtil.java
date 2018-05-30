@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 public class MetricsUtil {
+	
+	public static int MATRIC_TABLE_HEADER_INDEX = 2;
 
 	private static ObjectMapper mapper = new ObjectMapper();
 
@@ -32,7 +34,7 @@ public class MetricsUtil {
 			ArrayNode metrics = (ArrayNode) properties.get("metrics");
 			if (metrics != null) {
 				ArrayNode metricLine = (ArrayNode) metrics.get(0);
-				TextNode heading = (TextNode) metricLine.get(1);
+				TextNode heading = (TextNode) metricLine.get(MATRIC_TABLE_HEADER_INDEX);
 				String metricLineString = "", headingString = "";
 				if (metricLine != null) {
 					metricLineString = metricLine.toString();
@@ -65,12 +67,22 @@ public class MetricsUtil {
 			String labelCode = label.split("-")[1];
 			List<String> instanceList = instancesMap.get(label);
 			for (String id : instanceList) {
-				JsonNode metric = mapper.readTree(String.format(template, id, labelCode));
+				JsonNode metric = mapper.readTree(getFormatter(template).format(template, id, labelCode, label));
 				returnMetric.add(metric);
 			}
 		}
 
 		return returnMetric;
+	}
+	
+	private static Formatter getFormatter(String template) {
+		if(template.contains(Formatter.BEANSTALK)) {
+			return BeanstalkFormatter.getInstance();
+		}else if(template.contains(Formatter.BEANSTALK2)) {
+			return Beanstalk2Formatter.getInstance();
+		}else {
+			return StandardFormatter.getInstance();
+		}
 	}
 
 }

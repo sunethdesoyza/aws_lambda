@@ -9,7 +9,7 @@
             "properties": {
                 "view": "singleValue",
                 "metrics": [
-                    [ "AWS/EC2", "CPUUtilization", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","AWS/EC2", "CPUUtilization", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -27,7 +27,7 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/EC2", "NetworkIn", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","AWS/EC2", "NetworkIn", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300
@@ -43,7 +43,7 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/EC2", "NetworkOut", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","AWS/EC2", "NetworkOut", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300
@@ -59,7 +59,7 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/EC2", "DiskWriteBytes", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","AWS/EC2", "DiskWriteBytes", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -76,7 +76,7 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/EC2", "DiskReadBytes", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","AWS/EC2", "DiskReadBytes", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -92,7 +92,7 @@
             "properties": {
                 "view": "singleValue",
                 "metrics": [
-                    [ "System/Linux", "DiskSpaceAvailable", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                    [ "{STANDARD}","System/Linux", "DiskSpaceAvailable", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -108,7 +108,7 @@
             "properties": {
                 "view": "singleValue",
                 "metrics": [
-                    [ "System/Linux", "DiskSpaceUtilization", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                    [ "{STANDARD}","System/Linux", "DiskSpaceUtilization", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -124,7 +124,7 @@
             "properties": {
                 "view": "singleValue",
                 "metrics": [
-                    [ "System/Linux", "DiskSpaceUsed", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                    [ "{STANDARD}","System/Linux", "DiskSpaceUsed", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -141,7 +141,7 @@
                 "view": "singleValue",
                 "stacked": false,
                 "metrics": [
-                    [ "System/Linux", "MemoryUtilization", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","System/Linux", "MemoryUtilization", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "title": "Memory Utilization",
@@ -158,7 +158,7 @@
                 "view": "singleValue",
                 "stacked": false,
                 "metrics": [
-                    [ "System/Linux", "MemoryAvailable", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","System/Linux", "MemoryAvailable", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
@@ -175,7 +175,7 @@
                 "view": "singleValue",
                 "stacked": false,
                 "metrics": [
-                    [ "System/Linux", "MemoryUsed", "InstanceId", "%s", { "label": "%s" } ]
+                    [ "{STANDARD}","System/Linux", "MemoryUsed", "InstanceId", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "title": "Memory Used",
@@ -192,7 +192,7 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/ElasticBeanstalk", "InstanceHealth", "InstanceId", "%s", "EnvironmentName", "EnvName", { "label": "%s" } ]
+                    [ "{BEANSTALK}","AWS/ElasticBeanstalk", "InstanceHealth", "InstanceId", "%s", "EnvironmentName", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "title": "Elastic Beanstalk - Instances Health",
@@ -209,11 +209,29 @@
                 "view": "timeSeries",
                 "stacked": false,
                 "metrics": [
-                    [ "AWS/ElasticBeanstalk", "EnvironmentHealth", "EnvironmentName", "%s", { "label": "%s" } ]
+                    [ "{BEANSTALK2}","AWS/ElasticBeanstalk", "EnvironmentHealth", "EnvironmentName", "%s", { "label": "%s" } ]
                 ],
                 "region": "eu-west-1",
                 "period": 300,
                 "title": "Elastic Beanstalk - EnvironmentHealth"
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 71,
+            "width": 18,
+            "height": 9,
+            "styles": "undefined",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "{BEANSTALK}", "AWS/ElasticBeanstalk", "ApplicationRequestsTotal", "InstanceId", "%s", "EnvironmentName", "%s", { "label": "%s" } ]
+                    
+                    ],
+                "region": "eu-west-1",
+                "period": 300
             }
         },
         {

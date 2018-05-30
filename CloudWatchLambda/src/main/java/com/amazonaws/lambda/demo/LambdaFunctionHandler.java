@@ -126,8 +126,8 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 				ArrayNode metrics = (ArrayNode) properties.get("metrics");
 				if (metrics != null) {
 					ArrayNode metricLine = (ArrayNode) metrics.get(0);
-					if (metricLine != null && metricLine.size() > 2) {
-						TextNode heading = (TextNode) metricLine.get(1);
+					if (metricLine != null && metricLine.size() > MetricsUtil.MATRIC_TABLE_HEADER_INDEX) {
+						TextNode heading = (TextNode) metricLine.get(MetricsUtil.MATRIC_TABLE_HEADER_INDEX);
 						if (heading != null) {
 							properties.remove("metrics");
 							properties.set("metrics", updatedMetricList.get(heading.asText()));
