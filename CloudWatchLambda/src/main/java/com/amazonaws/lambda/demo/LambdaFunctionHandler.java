@@ -13,6 +13,11 @@ import java.util.Set;
 
 import com.amazonaws.lambda.demo.core.Ec2Instances;
 import com.amazonaws.lambda.demo.core.MetricsUtil;
+import com.amazonaws.services.autoscaling.AmazonAutoScaling;
+import com.amazonaws.services.autoscaling.AmazonAutoScalingClientBuilder;
+import com.amazonaws.services.autoscaling.model.AutoScalingGroup;
+import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsRequest;
+import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsResult;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatchClientBuilder;
 import com.amazonaws.services.cloudwatch.model.DeleteDashboardsRequest;
@@ -41,8 +46,8 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 	private Properties properties = new Properties();
 	private static AmazonEC2 ec2 = AmazonEC2ClientBuilder.defaultClient();
 	private static AmazonCloudWatch acw = AmazonCloudWatchClientBuilder.defaultClient();
+	private static AmazonAutoScaling aas = AmazonAutoScalingClientBuilder.defaultClient();
 	private ClassLoader classLoader = null;
-	
 
 	@Override
 	public String handleRequest(Object input, Context context) {
@@ -58,27 +63,42 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 		return "Success";
 	}
 
-	private Ec2Instances getLatestEc2InstanceIds() {
+	private List<String> getAwsAsgs() {
+		List<String> ret = new ArrayList<>();
+
+		List<AutoScalingGroup> asGroups = new ArrayList<>();
+		String nextToken = null;
+		while (true) {
+			DescribeAutoScalingGroupsResult result = aas
+					.describeAutoScalingGroups(new DescribeAutoScalingGroupsRequest().withNextToken(nextToken));
+			asGroups.addAll(result.getAutoScalingGroups());
+			nextToken = result.getNextToken();
+			if (nextToken == null)
+				break;
+		}
+		for (AutoScalingGroup autoScalingGroup : asGroups) {
+			ret.add(autoScalingGroup.getAutoScalingGroupName());
+		}
+		return ret;
+	}
+
+	private Ec2Instances getLatestEc2InstanceIds(List<String> asgs) {
+
 		boolean done = false;
 
 		DescribeInstancesRequest request = new DescribeInstancesRequest();
 
-		
-		// Should be setup using cloud formation : set as an ENV
-		String asgs[] = properties.getProperty("aws.asgs").split(",");
-		List<String> asg = new ArrayList<>(Arrays.asList(asgs));
+		// System.out.printf("ASGS : %s",asg.toString());
 
-		//System.out.printf("ASGS : %s",asg.toString());
-		
-		Filter filters = new Filter("tag:aws:autoscaling:groupName", asg);
+		Filter filters = new Filter("tag:aws:autoscaling:groupName", asgs);
 		Ec2Instances ec2Instances = new Ec2Instances();
 		while (!done) {
 			DescribeInstancesResult response = ec2.describeInstances(request.withFilters(filters));
 
 			for (Reservation reservation : response.getReservations()) {
 				for (Instance instance : reservation.getInstances()) {
-					System.out.printf("%n Status : %s , %s",instance.getState().getName() ,instance.getStateReason());
-					if(instance.getState().getName().equalsIgnoreCase("running")) {
+					System.out.printf("%n Status : %s , %s", instance.getState().getName(), instance.getStateReason());
+					if (instance.getState().getName().equalsIgnoreCase("running")) {
 						String name = "";
 						if (instance.getTags() != null) {
 							for (Tag tag : instance.getTags()) {
@@ -92,7 +112,7 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 				}
 			}
 
-			System.out.printf("%n Instances : %s",ec2Instances.getInstances().toString());
+			System.out.printf("%n Instances : %s", ec2Instances.getInstances().toString());
 			request.setNextToken(response.getNextToken());
 
 			if (response.getNextToken() == null) {
@@ -103,7 +123,7 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 	}
 
 	private JsonNode getUpdatedDashBoard() {
-		Ec2Instances instances = getLatestEc2InstanceIds();
+		Ec2Instances instances = getLatestEc2InstanceIds(getAwsAsgs());
 		JsonNode rootNode = loadTemplate();
 		ArrayNode widgets = (ArrayNode) rootNode.get("widgets");
 		MetricsUtil metricsUtil = new MetricsUtil();
@@ -117,11 +137,11 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 				e.printStackTrace();
 			}
 		}
-		//System.out.printf("%n Updated Matrics : %s",updatedMetricList.toString());
+		// System.out.printf("%n Updated Matrics : %s",updatedMetricList.toString());
 		// add the new widgets to the dashboard
 		for (JsonNode widget : widgets) {
 			ObjectNode properties = (ObjectNode) widget.get("properties");
-			
+
 			if (properties != null) {
 				ArrayNode metrics = (ArrayNode) properties.get("metrics");
 				if (metrics != null) {
@@ -151,7 +171,7 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 
 		return rootNode;
 	}
-	
+
 	private void loadProperties() {
 		try {
 			InputStream stream = classLoader.getResourceAsStream(RESOURCES_FILE);
@@ -161,4 +181,5 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 			e.printStackTrace();
 		}
 	}
+
 }
