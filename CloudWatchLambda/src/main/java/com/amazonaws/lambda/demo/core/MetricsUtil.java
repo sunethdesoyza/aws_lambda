@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.amazonaws.lambda.demo.LambdaFunctionHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.databind.node.TextNode;
 
 public class MetricsUtil {
 	
-	public static int MATRIC_TABLE_HEADER_INDEX = 2;
+	public static final int MATRIC_TABLE_HEADER_INDEX = 2;
 
 	private static ObjectMapper mapper = new ObjectMapper();
 
@@ -30,8 +31,8 @@ public class MetricsUtil {
 
 		Iterator<JsonNode> widgetsItr = widgets.iterator();
 		while (widgetsItr.hasNext()) {
-			ObjectNode properties = (ObjectNode) ((JsonNode) widgetsItr.next()).get("properties");
-			ArrayNode metrics = (ArrayNode) properties.get("metrics");
+			ObjectNode properties = (ObjectNode) ((JsonNode) widgetsItr.next()).get(LambdaFunctionHandler.AWS_CW_TAG_PROPERTIES);
+			ArrayNode metrics = (ArrayNode) properties.get(LambdaFunctionHandler.AWS_CW_TAG_MATRICS);
 			if (metrics != null) {
 				ArrayNode metricLine = (ArrayNode) metrics.get(0);
 				TextNode heading = (TextNode) metricLine.get(MATRIC_TABLE_HEADER_INDEX);

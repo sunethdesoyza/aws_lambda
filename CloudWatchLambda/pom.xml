@@ -71,11 +71,6 @@
 	    <version>1.11.333</version>
 	</dependency>
 	<dependency>
-    		<groupId>com.amazonaws</groupId>
-    		<artifactId>aws-java-sdk-autoscaling</artifactId>
-    		<version>1.11.337</version>
-	</dependency>
-	<dependency>
 	    <groupId>com.amazonaws</groupId>
 	    <artifactId>aws-java-sdk-cloudwatch</artifactId>
 	    <version>1.11.334</version>
