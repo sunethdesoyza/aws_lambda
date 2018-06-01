@@ -245,7 +245,7 @@
             "width": 24,
             "height": 3,
             "properties": {
-				"markdown": "\n~~~\nThis is an auto generated Dashboard. Any manual changes will be overridden in next auto update.\n~~~\n---\n # **CPU Metrics** \n"
+				"markdown": "\n~~~\nThis is an auto generated Dashboard. Any manual changes will be overridden in next auto update.\n~~~\n---\n ## **CPU Metrics** \n"
             }
         },
         {
