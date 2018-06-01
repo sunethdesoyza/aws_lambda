@@ -8,282 +8,268 @@
             "height": 3,
             "properties": {
                 "view": "singleValue",
-                "metrics": [
-                    [ "{STANDARD}","AWS/EC2", "CPUUtilization", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "title": "",
-                "stacked": true
+                "title": "CPU Utilization",
+                "stacked": true,
+                "metrics": [
+				    [ "{STANDARD}","AWS/EC2", "CPUUtilization", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 8,
+            "y": 6,
             "width": 12,
             "height": 6,
             "properties": {
                 "view": "timeSeries",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","AWS/EC2", "NetworkIn", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
-                "period": 300
+                "period": 300,
+				"title": "Network In",
+                "metrics": [
+				    [ "{STANDARD}","AWS/EC2", "NetworkIn", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 12,
-            "y": 8,
+            "y": 6,
             "width": 12,
             "height": 6,
             "properties": {
                 "view": "timeSeries",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","AWS/EC2", "NetworkOut", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
-                "period": 300
+                "period": 300,
+				"title": "Network Out",
+                "metrics": [
+					[ "{STANDARD}","AWS/EC2", "NetworkOut", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 16,
-            "width": 6,
+            "y": 14,
+            "width": 12,
             "height": 6,
             "properties": {
                 "view": "timeSeries",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","AWS/EC2", "DiskWriteBytes", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "title": "Disk Writes (Bytes)"
+                "title": "Disk Writes",
+                "metrics": [
+					[ "{STANDARD}","AWS/EC2", "DiskWriteBytes", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
-            "x": 6,
-            "y": 16,
-            "width": 6,
+            "x": 12,
+            "y": 14,
+            "width": 12,
             "height": 6,
             "properties": {
                 "view": "timeSeries",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","AWS/EC2", "DiskReadBytes", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "title": "Disk Reads (Bytes)"
+                "title": "Disk Reads",
+                "metrics": [
+				    [ "{STANDARD}","AWS/EC2", "DiskReadBytes", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 32,
+            "y": 22,
             "width": 24,
             "height": 3,
             "properties": {
                 "view": "singleValue",
-                "metrics": [
-                    [ "{STANDARD}","System/Linux", "DiskSpaceAvailable", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "stacked": false
+                "title": "Available Disk Space",				
+                "stacked": false,
+                "metrics": [
+				    [ "{STANDARD}","System/Linux", "DiskSpaceAvailable", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 35,
+            "y": 25,
             "width": 24,
             "height": 3,
             "properties": {
                 "view": "singleValue",
-                "metrics": [
-                    [ "{STANDARD}","System/Linux", "DiskSpaceUtilization", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "stacked": false
+				"title": "Disk Space Utilization",
+                "stacked": false,
+                "metrics": [
+				    [ "{STANDARD}","System/Linux", "DiskSpaceUtilization", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 38,
+            "y": 28,
             "width": 24,
             "height": 3,
             "properties": {
                 "view": "singleValue",
-                "metrics": [
-                    [ "{STANDARD}","System/Linux", "DiskSpaceUsed", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "stacked": false
+				"title": "Disk Space Used",
+                "stacked": false,
+                "metrics": [
+				    [ "{STANDARD}","System/Linux", "DiskSpaceUsed", "MountPath", "/", "InstanceId", "%s", "Filesystem", "/dev/xvda1", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 43,
-            "width": 21,
+            "y": 33,
+            "width": 24,
             "height": 3,
             "properties": {
                 "view": "singleValue",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","System/Linux", "MemoryUtilization", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "title": "Memory Utilization",
-                "period": 300
+                "period": 300,
+                "metrics": [
+                    [ "{STANDARD}","System/Linux", "MemoryUtilization", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 46,
-            "width": 21,
+            "y": 36,
+            "width": 24,
             "height": 3,
             "properties": {
                 "view": "singleValue",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","System/Linux", "MemoryAvailable", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "period": 300,
-                "title": "Memory Available"
+                "title": "Available Memory",
+                "metrics": [
+                    [ "{STANDARD}","System/Linux", "MemoryAvailable", "InstanceId", "%s", { "label": "%s" } ]
+                ]
             }
         },
         {
             "type": "metric",
             "x": 0,
-            "y": 49,
-            "width": 21,
+            "y": 39,
+            "width": 24,
             "height": 3,
             "properties": {
                 "view": "singleValue",
                 "stacked": false,
-                "metrics": [
-                    [ "{STANDARD}","System/Linux", "MemoryUsed", "InstanceId", "%s", { "label": "%s" } ]
-                ],
                 "region": "eu-west-1",
                 "title": "Memory Used",
-                "period": 300
+                "period": 300,
+                "metrics": [
+                    [ "{STANDARD}","System/Linux", "MemoryUsed", "InstanceId", "%s", { "label": "%s" } ]
+                ]
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 50,
+            "width": 24,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-west-1",
+                "title": "Instances Health",
+                "period": 300,
+                "metrics": [
+                    [ "{BEANSTALK}","AWS/ElasticBeanstalk", "InstanceHealth", "InstanceId", "%s", "EnvironmentName", "%s", { "label": "%s" } ]
+                ]
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 44,
+            "width": 24,
+            "height": 6,
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "EnvironmentHealth",
+                "metrics": [
+                    [ "{BEANSTALK2}","AWS/ElasticBeanstalk", "EnvironmentHealth", "EnvironmentName", "%s", { "label": "%s" } ]
+                ]
             }
         },
 		{
-            "type": "metric",
-            "x": 0,
-            "y": 60,
-            "width": 21,
-            "height": 9,
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "{BEANSTALK}","AWS/ElasticBeanstalk", "InstanceHealth", "InstanceId", "%s", "EnvironmentName", "%s", { "label": "%s" } ]
-                ],
-                "region": "eu-west-1",
-                "title": "Elastic Beanstalk - Instances Health",
-                "period": 300
-            }
-        },
-        {
-            "type": "metric",
-            "x": 0,
-            "y": 54,
-            "width": 18,
-            "height": 6,
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "{BEANSTALK2}","AWS/ElasticBeanstalk", "EnvironmentHealth", "EnvironmentName", "%s", { "label": "%s" } ]
-                ],
-                "region": "eu-west-1",
-                "period": 300,
-                "title": "Elastic Beanstalk - EnvironmentHealth"
-            }
-        },
-        {
-            "type": "metric",
-            "x": 0,
-            "y": 71,
-            "width": 18,
-            "height": 9,
-            "styles": "undefined",
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "{BEANSTALK}", "AWS/ElasticBeanstalk", "ApplicationRequestsTotal", "InstanceId", "%s", "EnvironmentName", "%s", { "label": "%s" } ]
-                    
-                    ],
-                "region": "eu-west-1",
-                "period": 300
-            }
-        },
-        {
-            "type": "text",
-            "x": 0,
-            "y": 41,
-            "width": 24,
-            "height": 2,
-            "properties": {
-                "markdown": "\n---\n## **EC2 Memory Related Metrics**\n\n\n                 \n"
-            }
-        },
-        {
-            "type": "text",
-            "x": 0,
-            "y": 6,
-            "width": 24,
-            "height": 2,
-            "properties": {
-                "markdown": "\n&nbsp;\n## **Network IO Metrics**\n\n\n                 \n"
-            }
-        },
-        {
-            "type": "text",
-            "x": 0,
-            "y": 30,
-            "width": 24,
-            "height": 2,
-            "properties": {
-                "markdown": "\n---\n## **EC2 Disk Space Related Metrics**\n\n\n                 \n"
-            }
-        },
-        {
-            "type": "text",
-            "x": 0,
-            "y": 52,
-            "width": 21,
-            "height": 2,
-            "properties": {
-                "markdown": "\n---\n## **Elastic Beanstalk Metrics**\n"
-            }
-        },
-        {
             "type": "text",
             "x": 0,
             "y": 0,
             "width": 24,
-            "height": 1,
+            "height": 3,
             "properties": {
-                "markdown": "\n## **CPU Utilization**               \n"
+				"markdown": "\n~~~\nThis is an auto generated Dashboard. Any manual changes will be overridden in next auto update.\n~~~\n---\n # **CPU Metrics** \n"
             }
-        }
-
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 31,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n--- \n## **Memory Metrics**\n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 12,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n--- \n## **Network IO Metrics**\n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 20,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n--- \n## **Disk Space Metrics**\n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 42,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n--- \n## **Elastic Beanstalk Metrics**\n"
+            }
+        } 
     ]
 }
