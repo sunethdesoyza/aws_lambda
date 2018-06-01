@@ -20,7 +20,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 6,
+            "y": 8,
             "width": 12,
             "height": 6,
             "properties": {
@@ -37,7 +37,7 @@
         {
             "type": "metric",
             "x": 12,
-            "y": 6,
+            "y": 8,
             "width": 12,
             "height": 6,
             "properties": {
@@ -54,7 +54,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 14,
+            "y": 16,
             "width": 12,
             "height": 6,
             "properties": {
@@ -71,7 +71,7 @@
         {
             "type": "metric",
             "x": 12,
-            "y": 14,
+            "y": 16,
             "width": 12,
             "height": 6,
             "properties": {
@@ -88,7 +88,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 22,
+            "y": 24,
             "width": 24,
             "height": 3,
             "properties": {
@@ -105,7 +105,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 25,
+            "y": 27,
             "width": 24,
             "height": 3,
             "properties": {
@@ -122,7 +122,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 28,
+            "y": 30,
             "width": 24,
             "height": 3,
             "properties": {
@@ -139,7 +139,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 33,
+            "y": 35,
             "width": 24,
             "height": 3,
             "properties": {
@@ -156,7 +156,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 36,
+            "y": 38,
             "width": 24,
             "height": 3,
             "properties": {
@@ -173,7 +173,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 39,
+            "y": 41,
             "width": 24,
             "height": 3,
             "properties": {
@@ -190,7 +190,7 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 50,
+            "y": 52,
             "width": 24,
             "height": 6,
             "properties": {
@@ -207,7 +207,24 @@
         {
             "type": "metric",
             "x": 0,
-            "y": 44,
+            "y": 63,
+            "width": 24,
+            "height": 6,
+            "properties": {
+               "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-west-1",
+                "period": 300,
+                "title": "Application Requests Total",
+                "metrics": [
+                    [ "{BEANSTALK}", "AWS/ElasticBeanstalk", "ApplicationRequestsTotal", "InstanceId", "%s", "EnvironmentName", "%s", { "label": "%s" } ]
+ 				 ]
+            }
+        },
+        {
+            "type": "metric",
+            "x": 0,
+            "y": 46,
             "width": 24,
             "height": 6,
             "properties": {
@@ -215,7 +232,7 @@
                 "stacked": false,
                 "region": "eu-west-1",
                 "period": 300,
-                "title": "EnvironmentHealth",
+                "title": "Environment Health",
                 "metrics": [
                     [ "{BEANSTALK2}","AWS/ElasticBeanstalk", "EnvironmentHealth", "EnvironmentName", "%s", { "label": "%s" } ]
                 ]
@@ -234,17 +251,7 @@
         {
             "type": "text",
             "x": 0,
-            "y": 31,
-            "width": 24,
-            "height": 2,
-            "properties": {
-                "markdown": "\n--- \n## **Memory Metrics**\n"
-            }
-        },
-        {
-            "type": "text",
-            "x": 0,
-            "y": 12,
+            "y": 6,
             "width": 24,
             "height": 2,
             "properties": {
@@ -254,7 +261,17 @@
         {
             "type": "text",
             "x": 0,
-            "y": 20,
+            "y": 12,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n--- \n## **Disk IO Metrics**\n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 22,
             "width": 24,
             "height": 2,
             "properties": {
@@ -264,7 +281,17 @@
         {
             "type": "text",
             "x": 0,
-            "y": 42,
+            "y": 33,
+            "width": 24,
+            "height": 2,
+            "properties": {
+                "markdown": "\n--- \n## **Memory Metrics**\n"
+            }
+        },
+        {
+            "type": "text",
+            "x": 0,
+            "y": 44,
             "width": 24,
             "height": 2,
             "properties": {
